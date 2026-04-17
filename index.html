@@ -1,0 +1,880 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gomal Amin — Remote Sensing, Water Quality & Geospatial Research</title>
+  <meta name="description" content="Academic website of Gomal Amin, PhD researcher working on remote sensing, river water quality, geospatial technologies, and AI." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet" />
+  <style>
+    :root{
+      --bg:#0b0f14;
+      --surface:#111720;
+      --surface-2:#0f141c;
+      --border:rgba(255,255,255,0.08);
+      --text:#e8eaf0;
+      --muted:#8b93a7;
+      --accent:#4fc3a1;
+      --accent2:#7eb8f7;
+      --accent3:#f0a96b;
+      --serif:'DM Serif Display', Georgia, serif;
+      --sans:'DM Sans', system-ui, sans-serif;
+      --max:1180px;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{
+      background:var(--bg);
+      color:var(--text);
+      font-family:var(--sans);
+      line-height:1.7;
+      overflow-x:hidden;
+    }
+    body::before{
+      content:"";
+      position:fixed; inset:0;
+      pointer-events:none;
+      background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+      opacity:.45; z-index:999;
+    }
+    a{color:inherit}
+    .container{max-width:var(--max);margin:0 auto;padding:0 24px}
+    nav{
+      position:sticky; top:0; z-index:100;
+      backdrop-filter:blur(14px);
+      background:rgba(11,15,20,.78);
+      border-bottom:1px solid var(--border);
+    }
+    .nav-inner{
+      max-width:var(--max); margin:0 auto;
+      display:flex; align-items:center; justify-content:space-between;
+      padding:16px 24px;
+      gap:18px;
+    }
+    .brand{
+      text-decoration:none;
+      font-family:var(--serif);
+      font-size:1.15rem;
+      letter-spacing:.01em;
+      white-space:nowrap;
+    }
+    .nav-links{
+      list-style:none; display:flex; gap:22px; flex-wrap:wrap; justify-content:flex-end;
+    }
+    .nav-links a{
+      text-decoration:none; color:var(--muted); font-size:.84rem; font-weight:600;
+      letter-spacing:.06em; text-transform:uppercase; transition:.2s;
+    }
+    .nav-links a:hover{color:var(--accent)}
+    .hero{
+      min-height:92vh;
+      display:grid; grid-template-columns:1.15fr .85fr; gap:42px;
+      align-items:center;
+      position:relative;
+      padding:48px 0 24px;
+    }
+    .hero::after{
+      content:"";
+      position:absolute; right:-12%; top:7%;
+      width:52vw; height:52vw;
+      background:radial-gradient(ellipse at center, rgba(79,195,161,.09), transparent 66%);
+      border-radius:50%;
+      pointer-events:none;
+    }
+    .eyebrow{
+      display:inline-flex; align-items:center; gap:.65rem;
+      color:var(--accent); font-size:.8rem; font-weight:700;
+      letter-spacing:.12em; text-transform:uppercase;
+      margin-bottom:18px;
+    }
+    .eyebrow::before{
+      content:""; width:28px; height:1px; background:var(--accent);
+    }
+    h1{
+      font-family:var(--serif);
+      font-size:clamp(2.8rem,5vw,4.85rem);
+      line-height:1.03;
+      letter-spacing:-.02em;
+      margin-bottom:18px;
+    }
+    h1 em{font-style:italic; color:var(--accent2)}
+    .hero-desc{
+      color:var(--muted);
+      max-width:690px;
+      font-size:1.06rem;
+      margin-bottom:28px;
+    }
+    .hero-cta{display:flex; gap:14px; flex-wrap:wrap; margin-bottom:22px}
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center;
+      padding:.82rem 1.35rem;
+      border-radius:10px;
+      text-decoration:none;
+      border:1px solid var(--border);
+      font-weight:600; font-size:.93rem;
+      transition:.2s;
+    }
+    .btn-primary{
+      background:var(--accent);
+      color:#091015; border-color:transparent;
+    }
+    .btn-primary:hover{transform:translateY(-1px); background:#62d4b0}
+    .btn-secondary{
+      background:transparent;
+      color:var(--text);
+    }
+    .btn-secondary:hover{
+      border-color:var(--accent2);
+      color:var(--accent2);
+      transform:translateY(-1px);
+    }
+    .quick-links{
+      color:var(--muted);
+      font-size:.93rem;
+      display:flex; gap:12px; flex-wrap:wrap;
+    }
+    .quick-links a{
+      color:var(--accent2);
+      text-decoration:none;
+    }
+
+    .hero-panel{
+      display:flex; flex-direction:column; gap:14px; padding-top:42px;
+      align-items:flex-end;
+    }
+    .stat-card{
+      width:min(320px,100%);
+      background:linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.015));
+      border:1px solid var(--border);
+      border-radius:16px;
+      padding:20px 22px;
+      position:relative;
+      overflow:hidden;
+      box-shadow:0 12px 35px rgba(0,0,0,.18);
+    }
+    .stat-card:nth-child(2){margin-right:-20px}
+    .stat-card:nth-child(3){margin-right:12px}
+    .stat-card::before{
+      content:"";
+      position:absolute; left:0; top:0; bottom:0; width:3px;
+    }
+    .stat-card.green::before{background:var(--accent)}
+    .stat-card.blue::before{background:var(--accent2)}
+    .stat-card.orange::before{background:var(--accent3)}
+    .stat-num{
+      font-family:var(--serif);
+      font-size:2.15rem;
+      line-height:1;
+      margin-bottom:8px;
+    }
+    .green .stat-num{color:var(--accent)}
+    .blue .stat-num{color:var(--accent2)}
+    .orange .stat-num{color:var(--accent3)}
+    .stat-label{color:var(--muted); font-size:.9rem}
+
+    .sep{
+      max-width:var(--max); margin:0 auto;
+      border:none; border-top:1px solid var(--border);
+    }
+
+    section{padding:76px 0}
+    .section-label{
+      display:inline-flex; align-items:center; gap:.6rem;
+      color:var(--accent);
+      font-size:.76rem; font-weight:700;
+      letter-spacing:.12em; text-transform:uppercase;
+      margin-bottom:14px;
+    }
+    .section-label::before{
+      content:""; width:20px; height:1px; background:var(--accent);
+    }
+    h2{
+      font-family:var(--serif);
+      font-size:clamp(1.9rem,3.1vw,2.85rem);
+      line-height:1.08;
+      margin-bottom:8px;
+    }
+    .section-sub{
+      color:var(--muted); max-width:720px; margin-bottom:34px;
+    }
+
+    .about-grid{
+      display:grid; grid-template-columns:1.15fr .85fr; gap:38px; align-items:start;
+    }
+    .panel{
+      background:var(--surface);
+      border:1px solid var(--border);
+      border-radius:18px;
+      padding:26px;
+    }
+    .about-text p{color:var(--muted); margin-bottom:16px}
+    .tags{display:flex; gap:10px; flex-wrap:wrap; margin-top:18px}
+    .tag{
+      background:rgba(79,195,161,.08);
+      border:1px solid rgba(79,195,161,.24);
+      color:var(--accent);
+      font-size:.79rem; font-weight:600;
+      border-radius:999px;
+      padding:.38rem .8rem;
+    }
+    .journey h3, .list-card h3, .project-card h3, .pub-card h3, .contact-card h3{
+      font-family:var(--serif); font-size:1.2rem; margin-bottom:16px;
+    }
+    .journey-step{
+      display:flex; gap:14px; position:relative; padding-bottom:18px;
+    }
+    .journey-step:last-child{padding-bottom:0}
+    .journey-step:not(:last-child)::after{
+      content:""; position:absolute; left:10px; top:24px; bottom:2px; width:1px;
+      background:var(--border);
+    }
+    .dot{
+      width:21px; height:21px; border-radius:50%;
+      border:2px solid var(--accent); flex:0 0 21px; margin-top:4px;
+      position:relative;
+    }
+    .dot::after{
+      content:""; width:7px; height:7px; border-radius:50%; background:var(--accent);
+      position:absolute; inset:0; margin:auto;
+    }
+    .journey-step strong{display:block; font-size:.96rem}
+    .journey-step span{display:block; color:var(--muted); font-size:.87rem}
+
+    .research-grid{
+      display:grid; grid-template-columns:repeat(3,1fr); gap:16px;
+    }
+    .res-card, .project-card, .pub-card, .contact-card{
+      background:var(--surface);
+      border:1px solid var(--border);
+      border-radius:16px;
+      padding:22px;
+      transition:.22s;
+    }
+    .res-card:hover, .project-card:hover, .pub-card:hover, .contact-card:hover{
+      transform:translateY(-4px);
+      border-color:rgba(126,184,247,.32);
+    }
+    .res-icon{
+      width:46px; height:46px; border-radius:12px;
+      display:flex; align-items:center; justify-content:center;
+      margin-bottom:14px; font-size:1.25rem;
+      background:rgba(126,184,247,.09);
+    }
+    .res-card h3{font-size:1.02rem; margin-bottom:8px}
+    .res-card p{color:var(--muted); font-size:.9rem}
+
+    .highlight{
+      margin-top:30px;
+      background:linear-gradient(180deg, rgba(255,255,255,.025), rgba(255,255,255,.015));
+      border:1px solid var(--border);
+      border-radius:18px;
+      padding:30px;
+      display:grid; grid-template-columns:1fr auto; gap:18px; align-items:start;
+      position:relative; overflow:hidden;
+    }
+    .highlight::before{
+      content:""; position:absolute; top:0; left:0; right:0; height:2px;
+      background:linear-gradient(90deg, var(--accent), var(--accent2));
+    }
+    .highlight h3{
+      font-family:var(--serif); font-size:1.45rem; margin-bottom:10px;
+    }
+    .highlight p{color:var(--muted)}
+    .highlight ul{
+      margin-top:14px; list-style:none; display:grid; gap:6px;
+    }
+    .highlight li{color:var(--muted); font-size:.9rem}
+    .highlight li::before{content:"· "; color:var(--accent); font-weight:700}
+    .badge{
+      background:rgba(79,195,161,.1);
+      color:var(--accent);
+      border:1px solid rgba(79,195,161,.28);
+      border-radius:999px;
+      padding:.48rem 1rem;
+      font-size:.75rem; font-weight:700; letter-spacing:.08em; text-transform:uppercase;
+      white-space:nowrap;
+    }
+
+    .two-col{
+      display:grid; grid-template-columns:1fr 1fr; gap:18px;
+    }
+    .list-card ul{list-style:none; display:grid; gap:14px}
+    .list-card li{padding-bottom:14px; border-bottom:1px solid var(--border)}
+    .list-card li:last-child{padding-bottom:0; border-bottom:none}
+    .list-card strong{display:block; font-size:.96rem}
+    .list-card span{display:block; color:var(--muted); font-size:.89rem}
+
+    .projects-grid, .contact-grid{
+      display:grid; grid-template-columns:repeat(3,1fr); gap:16px;
+    }
+    .project-card p, .contact-card p{color:var(--muted); font-size:.9rem}
+    .project-links{
+      margin-top:14px; display:flex; gap:12px; flex-wrap:wrap;
+    }
+    .project-links a, .pub-link, .contact-link{
+      color:var(--accent2); text-decoration:none; font-weight:600; font-size:.9rem;
+    }
+
+    .pub-wrap{
+      display:grid; gap:16px;
+    }
+    .pub-card p{color:var(--muted); font-size:.92rem}
+    .pub-meta{
+      color:var(--muted); font-size:.82rem; margin-top:10px;
+    }
+    .pub-link{display:inline-block; margin-top:12px}
+
+    .skills{
+      display:grid; grid-template-columns:repeat(3,1fr); gap:18px;
+    }
+    .chips{display:flex; flex-wrap:wrap; gap:10px}
+    .chip{
+      background:var(--surface);
+      border:1px solid var(--border);
+      color:var(--text);
+      font-size:.85rem;
+      border-radius:10px;
+      padding:.48rem .88rem;
+    }
+
+    .contact-card h4{
+      font-size:1rem; margin-bottom:8px;
+    }
+    .contact-card a{color:var(--accent2); text-decoration:none}
+    footer{
+      border-top:1px solid var(--border);
+      padding:24px 0 34px;
+      color:var(--muted);
+      font-size:.86rem;
+    }
+    .footer-inner{
+      max-width:var(--max); margin:0 auto; padding:0 24px;
+      display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap;
+    }
+
+    .fade-in{
+      opacity:0; transform:translateY(22px);
+      transition:opacity .55s ease, transform .55s ease;
+    }
+    .fade-in.visible{opacity:1; transform:none}
+
+    @media (max-width:1000px){
+      .hero, .about-grid, .two-col, .skills{grid-template-columns:1fr}
+      .research-grid, .projects-grid, .contact-grid{grid-template-columns:1fr 1fr}
+      .hero-panel{align-items:flex-start; padding-top:0}
+      .stat-card:nth-child(2), .stat-card:nth-child(3){margin-right:0}
+      .highlight{grid-template-columns:1fr}
+    }
+    @media (max-width:720px){
+      .nav-inner{align-items:flex-start; flex-direction:column}
+      .nav-links{gap:14px}
+      .research-grid, .projects-grid, .contact-grid{grid-template-columns:1fr}
+      section{padding:58px 0}
+      .container{padding:0 20px}
+      .nav-inner{padding:14px 20px}
+      .hero{padding:30px 0 18px; min-height:auto}
+      h1{font-size:2.6rem}
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="nav-inner">
+      <a class="brand" href="#top">Gomal Amin</a>
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#research">Research</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#publications">Publications</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main id="top" class="container">
+    <section class="hero">
+      <div class="fade-in">
+        <p class="eyebrow">PhD Researcher · UPJV / UniLaSalle Beauvais</p>
+        <h1>Gomal<br><em>Amin</em></h1>
+        <p class="hero-desc">
+          Environmental and geospatial researcher working at the intersection of satellite remote sensing,
+          river water quality, geospatial analysis, and machine learning. My current doctoral work focuses
+          on predicting water quality in the Seine in real time through multivariate data qualification,
+          indicator development, and satellite-image-based modelling.
+        </p>
+        <div class="hero-cta">
+          <a class="btn btn-primary" href="#publications">Selected Publications</a>
+          <a class="btn btn-secondary" href="mailto:gomal.amin@outlook.com">Email</a>
+          <a class="btn btn-secondary" href="/CV/">Extended CV Page</a>
+        </div>
+        <div class="quick-links">
+          <a href="https://scholar.google.com/citations?user=e59bNcEAAAAJ&hl=en" target="_blank" rel="noopener">Google Scholar</a>
+          <a href="https://www.linkedin.com/in/gomal-amin/" target="_blank" rel="noopener">LinkedIn</a>
+          <a href="https://github.com/gomal-amin-kara" target="_blank" rel="noopener">GitHub</a>
+          <a href="https://medium.com/@gomal.amin" target="_blank" rel="noopener">Medium</a>
+        </div>
+      </div>
+
+      <div class="hero-panel fade-in">
+        <div class="stat-card green">
+          <div class="stat-num">PhD</div>
+          <div class="stat-label">River water quality prediction using remote sensing and modelling</div>
+        </div>
+        <div class="stat-card blue">
+          <div class="stat-num">10+</div>
+          <div class="stat-label">Peer-reviewed publications and conference contributions across geospatial and environmental research</div>
+        </div>
+        <div class="stat-card orange">
+          <div class="stat-num">3</div>
+          <div class="stat-label">Research settings across Pakistan, Hong Kong, and France</div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <hr class="sep" />
+
+  <section id="about">
+    <div class="container">
+      <div class="fade-in">
+        <p class="section-label">About</p>
+        <h2>From mountain environments to river systems</h2>
+        <p class="section-sub">
+          My work connects remote sensing, geospatial technologies, and data-driven environmental analysis
+          across climate, hazards, land systems, and inland waters.
+        </p>
+      </div>
+
+      <div class="about-grid">
+        <div class="about-text fade-in">
+          <div class="panel">
+            <p>
+              I am currently a doctoral researcher affiliated with Université de Picardie Jules Verne and
+              UniLaSalle Beauvais, working on the prediction of water quality to allow swimming in the Seine
+              in real time through the qualification of multivariate online data, development of indicators,
+              and modelling based on satellite imagery.
+            </p>
+            <p>
+              My broader research interests include the integration of remote sensing and geospatial
+              technologies for climate-change-related environmental monitoring, water resources, hazard
+              vulnerability, and spatial modelling. I also work with machine learning approaches to analyse
+              Earth observation data and identify patterns relevant to environmental decision-making.
+            </p>
+            <p>
+              Across my academic and professional journey, I have worked in Pakistan, Hong Kong, and France,
+              with experience spanning GIS operations, land and water monitoring, InSAR-based deformation
+              studies, land cover modelling, and systematic review work in remote sensing and environmental applications.
+            </p>
+            <div class="tags">
+              <span class="tag">Remote Sensing</span>
+              <span class="tag">Water Quality</span>
+              <span class="tag">Machine Learning</span>
+              <span class="tag">GIS</span>
+              <span class="tag">InSAR</span>
+              <span class="tag">Sentinel-2</span>
+              <span class="tag">Environmental Monitoring</span>
+              <span class="tag">Geospatial Modelling</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="journey panel fade-in">
+          <h3>Research Journey</h3>
+          <div class="journey-step">
+            <div class="dot"></div>
+            <div>
+              <strong>Pakistan</strong>
+              <span>Environmental sciences, remote sensing and GIS training, hazard and field-oriented geospatial work.</span>
+            </div>
+          </div>
+          <div class="journey-step">
+            <div class="dot"></div>
+            <div>
+              <strong>Hong Kong Polytechnic University</strong>
+              <span>Research assistantship in land surveying, geo-informatics, and applied geospatial research.</span>
+            </div>
+          </div>
+          <div class="journey-step">
+            <div class="dot"></div>
+            <div>
+              <strong>UniLaSalle Beauvais / UPJV, France</strong>
+              <span>PhD on river water quality prediction, satellite-image processing, and modelling for the Seine.</span>
+            </div>
+          </div>
+          <div class="journey-step">
+            <div class="dot"></div>
+            <div>
+              <strong>Current direction</strong>
+              <span>Bridging environmental science, remote sensing, AI, and operational water-quality applications.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="sep" />
+
+  <section id="research">
+    <div class="container">
+      <div class="fade-in">
+        <p class="section-label">Research</p>
+        <h2>Core research areas</h2>
+        <p class="section-sub">
+          My current work sits at the intersection of Earth observation, geospatial analysis, and predictive environmental modelling.
+        </p>
+      </div>
+
+      <div class="research-grid fade-in">
+        <article class="res-card">
+          <div class="res-icon">🌊</div>
+          <h3>River Water Quality Monitoring</h3>
+          <p>Satellite and in situ data integration for water-quality assessment, indicator development, and real-time modelling applications.</p>
+        </article>
+        <article class="res-card">
+          <div class="res-icon">🛰️</div>
+          <h3>Remote Sensing of Inland Waters</h3>
+          <p>Use of Sentinel imagery, reflectance products, and processing workflows for monitoring optically complex river systems.</p>
+        </article>
+        <article class="res-card">
+          <div class="res-icon">🧠</div>
+          <h3>Machine Learning for Earth Observation</h3>
+          <p>Predictive modelling and pattern analysis from large-scale Earth observation datasets for environmental applications.</p>
+        </article>
+        <article class="res-card">
+          <div class="res-icon">🗺️</div>
+          <h3>GIS & Spatial Analysis</h3>
+          <p>Spatial analysis, geostatistical modelling, mapping, and decision-support workflows using desktop and cloud-based GIS tools.</p>
+        </article>
+        <article class="res-card">
+          <div class="res-icon">📡</div>
+          <h3>InSAR & Ground Deformation</h3>
+          <p>Land subsidence and terrain deformation studies using synthetic aperture radar interferometry and geospatial interpretation.</p>
+        </article>
+        <article class="res-card">
+          <div class="res-icon">🌍</div>
+          <h3>Climate, Hazards & Environmental Change</h3>
+          <p>Applications of remote sensing to hazard vulnerability, climate impacts, and landscape-level environmental monitoring.</p>
+        </article>
+      </div>
+
+      <div class="highlight fade-in">
+        <div>
+          <h3>Doctoral research focus</h3>
+          <p>
+            Prediction of water quality to allow swimming in the Seine in real time: qualification of online
+            multivariate data, development of indicators, and modelling by processing satellite images.
+          </p>
+          <ul>
+            <li>Institutional setting: UPJV and UniLaSalle Beauvais</li>
+            <li>Research unit: AGHYLE</li>
+            <li>Topic focus: water quality, indicators, remote sensing, and modelling</li>
+          </ul>
+        </div>
+        <div class="badge">PhD in Progress</div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="sep" />
+
+  <section id="experience">
+    <div class="container">
+      <div class="fade-in">
+        <p class="section-label">Experience</p>
+        <h2>Academic and professional experience</h2>
+        <p class="section-sub">
+          A combination of doctoral research, university research assistantships, operational GIS work, teaching support, reviewing, and scientific service.
+        </p>
+      </div>
+
+      <div class="two-col">
+        <div class="list-card panel fade-in">
+          <h3>Positions</h3>
+          <ul>
+            <li>
+              <strong>Doctoral Researcher, AGHYLE, UniLaSalle Beauvais, France</strong>
+              <span>02/2025 – Present</span>
+            </li>
+            <li>
+              <strong>Research Assistant, Department of Land Surveying and Geo-Informatics, The Hong Kong Polytechnic University</strong>
+              <span>08/2023 – 02/2025</span>
+            </li>
+            <li>
+              <strong>GIS Officer, Aga Khan Agency for Habitat Pakistan</strong>
+              <span>10/2019 – 07/2023</span>
+            </li>
+            <li>
+              <strong>Research Assistant, Department of Meteorology, COMSATS University Islamabad</strong>
+              <span>11/2018 – 10/2019</span>
+            </li>
+            <li>
+              <strong>GIS Intern, WWF Pakistan</strong>
+              <span>03/2017 – 08/2017</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="list-card panel fade-in">
+          <h3>Education & Service</h3>
+          <ul>
+            <li>
+              <strong>PhD, Université de Picardie Jules Verne, France</strong>
+              <span>2025 – 2028 · Water quality prediction in the Seine using multivariate data and satellite-image processing</span>
+            </li>
+            <li>
+              <strong>MSc in Remote Sensing & GIS, COMSATS University Islamabad</strong>
+              <span>2017 – 2019</span>
+            </li>
+            <li>
+              <strong>BSc in Environmental Sciences, COMSATS University Islamabad</strong>
+              <span>2013 – 2017</span>
+            </li>
+            <li>
+              <strong>Teaching Assistant</strong>
+              <span>Map Reading and Interpretation, Mapping Science, and Remote Sensing courses</span>
+            </li>
+            <li>
+              <strong>Reviewer & Member</strong>
+              <span>Reviewer for journals in Earth observation and environmental management; member of ISPRS, GEO BON, and HOTOSM</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="sep" />
+
+  <section id="publications">
+    <div class="container">
+      <div class="fade-in">
+        <p class="section-label">Publications</p>
+        <h2>Selected publications</h2>
+        <p class="section-sub">
+          A selection of peer-reviewed journal articles and recent scholarly outputs across land systems, biomass monitoring, groundwater, environmental modelling, and geospatial applications.
+        </p>
+      </div>
+
+      <div class="pub-wrap">
+        <article class="pub-card fade-in">
+          <h3>Land cover simulation and analysis for the Greater Bay Area of China in the context of the 2035 development plan</h3>
+          <p>Amin, G., Nazeer, M., &amp; Sing Wong, M. (2025). <em>Geo-spatial Information Science</em>.</p>
+          <a class="pub-link" href="https://doi.org/10.1080/10095020.2025.2548360" target="_blank" rel="noopener">View DOI</a>
+        </article>
+
+        <article class="pub-card fade-in">
+          <h3>Remote Sensing for Aboveground Biomass Monitoring in Terrestrial Ecosystems: A Systematic Review</h3>
+          <p>Ullah, S., Nazeer, M., Wong, M. S., &amp; Amin, G. (2025). <em>Remote Sensing Applications: Society and Environment</em>.</p>
+          <a class="pub-link" href="https://doi.org/10.1016/j.rsase.2025.101635" target="_blank" rel="noopener">View DOI</a>
+        </article>
+
+        <article class="pub-card fade-in">
+          <h3>Emerging from the depth: preliminary clues on groundwater upsurge in the coastal city of Zliten, Libya</h3>
+          <p>Nazeer, M., Amin, G., &amp; Wong, M. S. (2025). <em>Geomatics, Natural Hazards and Risk</em>.</p>
+          <a class="pub-link" href="https://doi.org/10.1080/19475705.2025.2475889" target="_blank" rel="noopener">View DOI</a>
+        </article>
+
+        <article class="pub-card fade-in">
+          <h3>Assessment of Machine Learning Algorithms for Land Cover Classification in a Complex Mountainous Landscape</h3>
+          <p>Amin, G., Imtiaz, I., Haroon, E., Saqib, N. U., Shahzad, M. I., &amp; Nazeer, M. (2024). <em>Journal of Geovisualization and Spatial Analysis</em>.</p>
+          <a class="pub-link" href="https://doi.org/10.1007/s41651-024-00195-z" target="_blank" rel="noopener">View DOI</a>
+        </article>
+
+        <article class="pub-card fade-in">
+          <h3>Assessment of landcover impacts on the groundwater quality using hydrogeochemical and geospatial techniques</h3>
+          <p>Iqbal, J., Amin, G., Su, C., Haroon, E., &amp; Baloch, M. Y. J. (2023). <em>Environmental Science and Pollution Research</em>.</p>
+          <a class="pub-link" href="https://doi.org/10.1007/s11356-023-29628-w" target="_blank" rel="noopener">View DOI</a>
+        </article>
+
+        <article class="pub-card fade-in">
+          <h3>Ecotourism potential assessment for Gilgit-Baltistan, Pakistan using integration of GIS, remote sensing, AHP and crowd-sourced data</h3>
+          <p>Amin, G., Haroon, E., Imtiaz, I., Zia, I., Saqib, N. U., &amp; Shahzad, M. I. (2021). <em>Geocarto International</em>.</p>
+          <a class="pub-link" href="https://doi.org/10.1080/10106049.2021.2005157" target="_blank" rel="noopener">View DOI</a>
+        </article>
+
+        <article class="pub-card fade-in">
+          <h3>Spatiotemporal variation in temperature extremes and their association with large scale circulation patterns in the Central Karakorum during 1982–2019</h3>
+          <p>Mehmood, M., Hassan, M., Iqbal, W., &amp; Amin, G. (2021). <em>Atmospheric Research</em>.</p>
+          <a class="pub-link" href="https://doi.org/10.1016/j.atmosres.2021.105925" target="_blank" rel="noopener">View DOI</a>
+        </article>
+
+        <article class="pub-card fade-in">
+          <h3>Measuring land deformation in a mega city Karachi-Pakistan with Sentinel SAR Interferometry</h3>
+          <p>Amin, G., Shahzad, M. I., Jaweria, S., &amp; Zia, I. (2021). <em>Geocarto International</em>.</p>
+          <a class="pub-link" href="https://doi.org/10.1080/10106049.2021.1903572" target="_blank" rel="noopener">View DOI</a>
+        </article>
+
+        <article class="pub-card fade-in">
+          <h3>Assessing the spatial distribution and impacts of recent oil spill along the Western Coast of Karachi, Pakistan</h3>
+          <p>Amin, G., Shahzad, M. I., Nazeer, M., Zia, I., Jaweria, S., &amp; Mehmood, I. (2021). <em>Geocarto International</em>.</p>
+          <a class="pub-link" href="https://doi.org/10.1080/10106049.2021.1899307" target="_blank" rel="noopener">View DOI</a>
+        </article>
+
+        <article class="pub-card fade-in">
+          <h3>Recent scholarly outputs</h3>
+          <p>
+            Recent outputs also include a 2026 EGU conference paper on Monte Carlo-based uncertainty propagation
+            for probabilistic water masking, as well as submitted work on multi-modal landslide risk assessment
+            and a systematic review comparing AI-driven approaches for river water quality prediction.
+          </p>
+          <div class="pub-meta">For a longer list, use the extended CV page or your Google Scholar profile.</div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <hr class="sep" />
+
+  <section id="projects">
+    <div class="container">
+      <div class="fade-in">
+        <p class="section-label">Projects</p>
+        <h2>Current and evolving research projects</h2>
+        <p class="section-sub">
+          A few representative directions that can later expand into dedicated subpages under this site.
+        </p>
+      </div>
+
+      <div class="projects-grid fade-in">
+        <article class="project-card">
+          <h3>Seine Water Quality Modelling</h3>
+          <p>PhD research on real-time water-quality prediction in the Seine using multivariate monitoring data, indicators, and satellite imagery.</p>
+          <div class="project-links">
+            <a href="#research">Research focus</a>
+            <a href="/CV/">Extended CV</a>
+          </div>
+        </article>
+
+        <article class="project-card">
+          <h3>Probabilistic Water Masking</h3>
+          <p>Uncertainty-aware workflow development for water masking from remote sensing reflectance products, including Monte Carlo-based propagation concepts.</p>
+          <div class="project-links">
+            <a href="#publications">Related outputs</a>
+            <a href="https://github.com/gomal-amin-kara" target="_blank" rel="noopener">GitHub profile</a>
+          </div>
+        </article>
+
+        <article class="project-card">
+          <h3>Land, Hazard & Climate Applications</h3>
+          <p>Applied work across land cover modelling, groundwater quality, ecotourism suitability, oil spill assessment, and deformation studies using geospatial methods.</p>
+          <div class="project-links">
+            <a href="#publications">Publications</a>
+            <a href="https://github.com/gomal-amin-kara" target="_blank" rel="noopener">GitHub profile</a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <hr class="sep" />
+
+  <section id="skills">
+    <div class="container">
+      <div class="fade-in">
+        <p class="section-label">Skills</p>
+        <h2>Technical stack and methods</h2>
+        <p class="section-sub">
+          Tools and platforms used across remote sensing, geospatial analysis, modelling, teaching, and scientific communication.
+        </p>
+      </div>
+
+      <div class="skills">
+        <div class="panel fade-in">
+          <h3 style="font-size:1rem;margin-bottom:14px">Programming & Analysis</h3>
+          <div class="chips">
+            <span class="chip">Python</span>
+            <span class="chip">Machine Learning</span>
+            <span class="chip">Geostatistical Modelling</span>
+            <span class="chip">Google Earth Engine</span>
+            <span class="chip">Jupyter</span>
+          </div>
+        </div>
+
+        <div class="panel fade-in">
+          <h3 style="font-size:1rem;margin-bottom:14px">Remote Sensing & GIS</h3>
+          <div class="chips">
+            <span class="chip">ArcGIS Pro</span>
+            <span class="chip">QGIS</span>
+            <span class="chip">ENVI</span>
+            <span class="chip">SNAP Toolbox</span>
+            <span class="chip">Land Cover Modelling</span>
+            <span class="chip">InSAR</span>
+          </div>
+        </div>
+
+        <div class="panel fade-in">
+          <h3 style="font-size:1rem;margin-bottom:14px">Scientific Practice</h3>
+          <div class="chips">
+            <span class="chip">Peer Review</span>
+            <span class="chip">Teaching Assistance</span>
+            <span class="chip">Academic Writing</span>
+            <span class="chip">Systematic Reviews</span>
+            <span class="chip">Research Communication</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="sep" />
+
+  <section id="contact">
+    <div class="container">
+      <div class="fade-in">
+        <p class="section-label">Contact</p>
+        <h2>Get in touch</h2>
+        <p class="section-sub">
+          Open to academic collaboration, geospatial research discussions, and conversations related to remote sensing, water quality, and environmental data science.
+        </p>
+      </div>
+
+      <div class="contact-grid fade-in">
+        <article class="contact-card">
+          <h3>Email</h3>
+          <p>Primary contact for academic communication.</p>
+          <a class="contact-link" href="mailto:gomal.amin@outlook.com">gomal.amin@outlook.com</a>
+        </article>
+
+        <article class="contact-card">
+          <h3>Profiles</h3>
+          <p>Find publications, professional background, and ongoing work.</p>
+          <p><a href="https://scholar.google.com/citations?user=e59bNcEAAAAJ&hl=en" target="_blank" rel="noopener">Google Scholar</a><br>
+          <a href="https://www.linkedin.com/in/gomal-amin/" target="_blank" rel="noopener">LinkedIn</a><br>
+          <a href="https://github.com/gomal-amin-kara" target="_blank" rel="noopener">GitHub</a></p>
+        </article>
+
+        <article class="contact-card">
+          <h3>Writing & Outreach</h3>
+          <p>Science communication and broader public-facing writing.</p>
+          <a class="contact-link" href="https://medium.com/@gomal.amin" target="_blank" rel="noopener">Medium profile</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-inner">
+      <span>Gomal Amin</span>
+      <span>Remote Sensing · Water Quality · Geospatial Research · © 2026</span>
+    </div>
+  </footer>
+
+  <script>
+    const els = document.querySelectorAll('.fade-in');
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          obs.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    els.forEach(el => obs.observe(el));
+  </script>
+</body>
+</html>
